@@ -1,0 +1,63 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: transparent;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background-color: #e67e22;
+  border-radius: 50%;
+  text-decoration: none;
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: 500;
+  overflow: visible;
+}
+
+.header-logo:hover {
+  background-color: #d35400;
+  color: #333;
+}
+
+.header-logo-text {
+  font-family: system-ui, -apple-system, sans-serif;
+  transform: translateX(30%);
+  font-size: 2rem;
+  white-space: nowrap;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  width: 45%;
+  min-width: 400px;
+}
+
+.header-link {
+  text-decoration: none;
+  color: #333;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.header-link:hover {
+  color: #e67e22;
+}
+
+.header-link.active {
+  color: #e67e22;
+}
+
+.header-link.active:hover {
+  color: #d35400;
+}
