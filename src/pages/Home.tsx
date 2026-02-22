@@ -3,7 +3,8 @@ import './Home.css'
 export default function Home() {
   return (
     <main className="home">
-      <div className="home-scene">
+      <section className="home-hero-section">
+        <div className="home-scene">
         <div className="home-brushstroke">
           <img src="/images/Orangebrushstroke.png" alt="" aria-hidden />
         </div>
@@ -37,7 +38,7 @@ export default function Home() {
         <button
           type="button"
           className="home-scroll-button"
-          onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+          onClick={() => document.getElementById('home-next')?.scrollIntoView({ behavior: 'smooth' })}
           aria-label="Scroll down"
         >
           <p className="home-scroll-japanese">スクロール</p>
@@ -45,7 +46,9 @@ export default function Home() {
           <p className="home-scroll-english">scroll</p>
           <span className="home-scroll-arrow" aria-hidden>↓</span>
         </button>
-      </div>
+        </div>
+      </section>
+      <section id="home-next" className="home-orange-section" />
     </main>
   )
 }

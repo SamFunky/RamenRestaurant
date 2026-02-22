@@ -1,9 +1,25 @@
 .home {
   position: relative;
-  min-height: 80vh;
+  margin-bottom: -2rem;
+}
+
+.home-hero-section {
+  height: 100vh;
+  min-height: 100vh;
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #fffbf6;
+  overflow: hidden;
+  margin-bottom: -80px;
+}
+
+.home-orange-section {
+  min-height: 100vh;
+  background-color: #e67e22;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
 }
 
 /* Fixed 16:9 scene - scales as a unit so elements stay in sync */
