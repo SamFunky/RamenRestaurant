@@ -34,6 +34,17 @@ export default function Home() {
           <p className="home-word-pronunciation">koku (koh-koo)</p>
           <p className="home-word-definition">is the deep, lingering richness that gives broth its soul and complexity.</p>
         </div>
+        <button
+          type="button"
+          className="home-scroll-button"
+          onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+          aria-label="Scroll down"
+        >
+          <p className="home-scroll-japanese">スクロール</p>
+          <p className="home-scroll-pronunciation">katakana (kah-tah-kah-nah)</p>
+          <p className="home-scroll-english">scroll</p>
+          <span className="home-scroll-arrow" aria-hidden>↓</span>
+        </button>
       </div>
     </main>
   )
