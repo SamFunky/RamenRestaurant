@@ -1,0 +1,84 @@
+.home {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Fixed 16:9 scene - scales as a unit so elements stay in sync */
+.home-scene {
+  position: relative;
+  width: 100%;
+  max-width: 1920px;
+  aspect-ratio: 16 / 9;
+}
+
+.home-brushstroke {
+  position: absolute;
+  top: 54%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+  width: 85%;
+  display: flex;
+  justify-content: center;
+}
+
+.home-brushstroke img {
+  width: 100%;
+  height: auto;
+  opacity: 0.9;
+}
+
+.home-hero {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 55%;
+  max-width: 1056px;
+}
+
+.home-hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.home-chopsticks {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+  width: 75%;
+  scale: -1 1;
+  rotate: -20deg;
+}
+
+.home-chopsticks img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.home-arc-text {
+  position: absolute;
+  top: 28%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  pointer-events: none;
+  overflow: visible;
+  width: 98%;
+}
+
+.home-arc-text svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}

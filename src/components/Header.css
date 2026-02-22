@@ -4,7 +4,8 @@
   justify-content: space-between;
   padding: 1rem 2rem;
   background-color: transparent;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 10;
 }
 
 .header-logo {
@@ -16,7 +17,7 @@
   background-color: #e67e22;
   border-radius: 50%;
   text-decoration: none;
-  color: #333;
+  color: #2f2f2f;
   font-size: 1.5rem;
   font-weight: 500;
   overflow: visible;
@@ -24,11 +25,11 @@
 
 .header-logo:hover {
   background-color: #d35400;
-  color: #333;
+  color: #2f2f2f;
 }
 
 .header-logo-text {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: 'Yuji Mai', serif;
   transform: translateX(30%);
   font-size: 2rem;
   white-space: nowrap;
@@ -43,7 +44,7 @@
 
 .header-link {
   text-decoration: none;
-  color: #333;
+  color: #2f2f2f;
   font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 0.05em;
