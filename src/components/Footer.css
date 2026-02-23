@@ -1,0 +1,99 @@
+.footer {
+  background-color: #2f2f2f;
+  color: #fffbf6;
+  padding: 3rem 2rem;
+  margin-top: 0;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+  color: #fffbf6;
+  transition: color 0.2s;
+}
+
+.footer-logo:hover {
+  color: #e67e22;
+}
+
+.footer-logo-text {
+  font-family: 'Yuji Mai', serif;
+  font-size: 2.25rem;
+  line-height: 1;
+}
+
+.footer-logo-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem 2rem;
+}
+
+.footer-link {
+  color: #fffbf6;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+  transition: color 0.2s, opacity 0.2s;
+}
+
+.footer-link:hover {
+  color: #e67e22;
+  opacity: 1;
+}
+
+.footer-link-button {
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+.footer-contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem 2rem;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.footer-contact-item {
+  color: #fffbf6;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a.footer-contact-item:hover {
+  color: #e67e22;
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin: 0;
+}
