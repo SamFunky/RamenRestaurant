@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './Home.css'
 import MenuCard from '../components/MenuCard'
 
@@ -20,6 +20,26 @@ export default function Home() {
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
+  const menuRef = useRef<HTMLElement>(null)
+  const aboutRef = useRef<HTMLElement>(null)
+  const contactRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('section-visible')
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+    ;[menuRef.current, aboutRef.current, contactRef.current].forEach((el) => {
+      if (el) observer.observe(el)
+    })
+    return () => observer.disconnect()
+  }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -35,11 +55,13 @@ export default function Home() {
           <img src="/images/Orangebrushstroke.png" alt="" aria-hidden />
         </div>
         <div className="home-hero">
-          <img
-            src="/images/homepagehero.png"
-            alt="IronBowl Ramen"
-            className="home-hero-image"
-          />
+          <div className="home-hero-bowl">
+            <img
+              src="/images/homepagehero.png"
+              alt="IronBowl Ramen"
+              className="home-hero-image"
+            />
+          </div>
           <div className="home-chopsticks">
             <img src="/images/chopsticks.png" alt="" aria-hidden />
           </div>
@@ -74,7 +96,7 @@ export default function Home() {
         </button>
         </div>
       </section>
-      <section id="home-menu" className="home-orange-section">
+      <section ref={menuRef} id="home-menu" className="home-orange-section section-fade">
         <div className="menu-section-inner">
           <div className="menu-section-header">
             <h2 className="menu-section-title">MENU</h2>
@@ -95,7 +117,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section id="home-about" className="home-about-section">
+      <section ref={aboutRef} id="home-about" className="home-about-section section-fade">
         <div className="about-hero">
           <div className="about-hero-header">
             <h2 className="about-hero-title">OUR STORY</h2>
@@ -157,7 +179,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section id="home-contact" className="home-contact-section">
+      <section ref={contactRef} id="home-contact" className="home-contact-section section-fade">
         <div className="contact-layout">
           <div className="contact-window">
             <h2 className="contact-window-title">GET IN TOUCH</h2>

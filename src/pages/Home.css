@@ -166,6 +166,46 @@
   text-align: left;
 }
 
+/* Hero loading animations */
+@keyframes hero-watermark-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes hero-arc-in {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(-200vw);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+  }
+}
+
+@keyframes hero-bowl-in {
+  from {
+    transform: translateX(-200vw);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes hero-chopsticks-in {
+  from {
+    transform: translate(-200vw, 50%);
+  }
+  to {
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes hero-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* Fixed 16:9 scene - scales as a unit so elements stay in sync */
 .home-scene {
   position: relative;
@@ -185,6 +225,7 @@
   color: rgba(47, 47, 47, 0.06);
   pointer-events: none;
   white-space: nowrap;
+  animation: hero-watermark-in 0.7s ease-out both;
 }
 
 .home-brushstroke {
@@ -197,6 +238,7 @@
   width: 85%;
   display: flex;
   justify-content: center;
+  animation: hero-fade-in 0.6s ease-out 0.7s both;
 }
 
 .home-brushstroke img {
@@ -215,6 +257,11 @@
   max-width: 1056px;
 }
 
+.home-hero-bowl {
+  width: 100%;
+  animation: hero-bowl-in 0.8s ease-out 0.1s both;
+}
+
 .home-hero-image {
   width: 100%;
   height: auto;
@@ -226,11 +273,12 @@
   top: 40%;
   left: 30%;
   transform: translate(-50%, -50%);
+  scale: -1 1;
+  rotate: -20deg;
   z-index: 1;
   pointer-events: none;
   width: 75%;
-  scale: -1 1;
-  rotate: -20deg;
+  animation: hero-chopsticks-in 0.8s ease-out 0.1s both;
 }
 
 .home-chopsticks img {
@@ -248,6 +296,7 @@
   pointer-events: none;
   overflow: visible;
   width: 98%;
+  animation: hero-arc-in 0.7s ease-out 0.4s both;
 }
 
 .home-arc-text svg {
@@ -265,6 +314,7 @@
   text-align: left;
   width: 35%;
   max-width: 320px;
+  animation: hero-fade-in 0.6s ease-out 0.7s both;
 }
 
 @media (max-width: 2000px) {
@@ -302,6 +352,7 @@
   transform: translateY(-50%);
   z-index: 4;
   display: flex;
+  animation: hero-fade-in 0.6s ease-out 0.7s both;
   flex-direction: column;
   align-items: center;
   gap: 0;
@@ -714,4 +765,16 @@
   color: #fffbf6;
   opacity: 0.95;
   margin: 0;
+}
+
+/* Scroll-triggered section fade-in */
+.section-fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section-fade.section-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
