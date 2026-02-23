@@ -71,3 +71,15 @@
 .header-link.active:hover {
   color: #d35400;
 }
+
+.header-link-button {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  padding: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}

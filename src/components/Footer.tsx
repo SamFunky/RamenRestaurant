@@ -1,27 +1,41 @@
 import { Link } from 'react-router-dom'
 import './Footer.css'
 
+const scrollToSection = (hash: string) => {
+  if (!hash) {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  } else {
+    const id = hash.replace('#', '')
+    const el = document.getElementById(id)
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+}
+
 export default function Footer() {
   const currentYear = new Date().getFullYear()
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
 
   return (
     <footer className="footer">
       <div className="footer-inner">
-        <Link to="/" className="footer-logo" onClick={scrollToTop}>
+        <Link to="/" className="footer-logo" onClick={(e) => { e.preventDefault(); scrollToSection('') }}>
           <span className="footer-logo-text">鉄丼</span>
           <span className="footer-logo-label">Iron Bowl Ramen</span>
         </Link>
         <nav className="footer-nav">
-          <button type="button" className="footer-link footer-link-button" onClick={scrollToTop}>
+          <button type="button" className="footer-link footer-link-button" onClick={() => scrollToSection('')}>
             Home
           </button>
-          <Link to="/#home-menu" className="footer-link">Menu</Link>
-          <Link to="/#home-about" className="footer-link">Our Story</Link>
-          <Link to="/#home-contact" className="footer-link">Contact</Link>
+          <button type="button" className="footer-link footer-link-button" onClick={() => scrollToSection('#home-menu')}>
+            Menu
+          </button>
+          <button type="button" className="footer-link footer-link-button" onClick={() => scrollToSection('#home-about')}>
+            Our Story
+          </button>
+          <button type="button" className="footer-link footer-link-button" onClick={() => scrollToSection('#home-contact')}>
+            Contact
+          </button>
         </nav>
         <div className="footer-contact">
           <a href="tel:+15551234567" className="footer-contact-item">(555) 123-4567</a>

@@ -66,11 +66,15 @@
 }
 
 .footer-link-button {
-  background: none;
+  background: transparent;
   border: none;
+  outline: none;
   font-family: inherit;
+  font-size: inherit;
   cursor: pointer;
   padding: 0;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .footer-contact {

@@ -35,3 +35,10 @@ body {
 body::-webkit-scrollbar {
   display: none;
 }
+
+/* Scroll margin for fixed header - sections won't hide under header when scrolled to */
+#home-menu,
+#home-about,
+#home-contact {
+  scroll-margin-top: 0px;
+}

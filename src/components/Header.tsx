@@ -2,6 +2,18 @@ import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import './Header.css'
 
+const scrollToSection = (hash: string) => {
+  if (!hash) {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  } else {
+    const id = hash.replace('#', '')
+    const el = document.getElementById(id)
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+}
+
 export default function Header() {
   const location = useLocation()
   const [visible, setVisible] = useState(true)
@@ -24,26 +36,27 @@ export default function Header() {
   }, [])
 
   const navLinks = [
-    { path: '/', label: 'HOME', hash: '' },
-    { path: '/#home-menu', label: 'MENU', hash: '#home-menu' },
-    { path: '/#home-about', label: 'OUR STORY', hash: '#home-about' },
-    { path: '/#home-contact', label: 'CONTACT', hash: '#home-contact' },
+    { label: 'HOME', hash: '' },
+    { label: 'MENU', hash: '#home-menu' },
+    { label: 'OUR STORY', hash: '#home-about' },
+    { label: 'CONTACT', hash: '#home-contact' },
   ]
 
   return (
     <header className={`header ${visible ? '' : 'header-hidden'}`}>
-      <Link to="/" className="header-logo">
+      <Link to="/" className="header-logo" onClick={(e) => { e.preventDefault(); scrollToSection('') }}>
         <span className="header-logo-text">鉄丼</span>
       </Link>
       <nav className="header-nav">
-        {navLinks.map(({ path, label, hash }) => (
-          <Link
+        {navLinks.map(({ label, hash }) => (
+          <button
             key={hash || 'home'}
-            to={path}
-            className={`header-link ${(hash === '' && !currentHash) || currentHash === hash ? 'active' : ''}`}
+            type="button"
+            className={`header-link header-link-button ${(hash === '' && !currentHash) || currentHash === hash ? 'active' : ''}`}
+            onClick={() => scrollToSection(hash)}
           >
             {label}
-          </Link>
+          </button>
         ))}
       </nav>
     </header>
