@@ -3,16 +3,16 @@ import './Home.css'
 import MenuCard from '../components/MenuCard'
 
 const MENU_ITEMS = [
-  { image: '/images/AburaKaraRamenDeluxe.png', japaneseName: '油辛ラーメン', englishName: 'Abura Kara Ramen Deluxe', descriptor: 'Spicy oil broth, fried garlic bits, sesame, negi, ajitama.' },
-  { image: '/images/EbiWantanShioSoup.png', japaneseName: '海老ワンタン塩スープ', englishName: 'Ebi Wantan Shio Soup', descriptor: 'Light salted broth with shrimp wontons and green onion.' },
-  { image: '/images/GyuNabeKaraStew.png', japaneseName: '牛鍋辛煮込み', englishName: 'Gyu Nabe Kara Stew', descriptor: 'Spicy beef hot pot with tofu, scallions, mushrooms, quail eggs.' },
-  { image: '/images/GyuNikomiRamen.png', japaneseName: '牛煮込みラーメン', englishName: 'Gyu Nikomi Ramen', descriptor: 'Slow-braised beef over ramen noodles with triple onsen eggs.' },
-  { image: '/images/KaraMisoTamagoRamen.png', japaneseName: '辛味噌たまごラーメン', englishName: 'Kara Miso Tamago Ramen', descriptor: 'Spicy miso broth, curly noodles, soft-boiled egg, chopped negi, sesame oil.' },
-  { image: '/images/KaraShoyuTamagoRamen.png', japaneseName: '辛醤油ラーメン', englishName: 'Kara Shoyu Tamago Ramen', descriptor: 'Spicy soy-based broth, sesame, scallions, onsen-style egg.' },
-  { image: '/images/MazemenGyuSoboro.png', japaneseName: '混ぜ麺 牛そぼろ', englishName: 'Mazemen Gyu Soboro', descriptor: 'Brothless spicy noodles with seasoned beef, scallions, sesame.' },
-  { image: '/images/MisoNabeUdon.png', japaneseName: '味噌鍋うどん', englishName: 'Miso Nabe Udon', descriptor: 'Miso-based hot pot with pork, shiitake, negi, double onsen tamago.' },
-  { image: '/images/TonkotsuTamagoRamen.png', japaneseName: '豚骨たまごラーメン', englishName: 'Tonkotsu Tamago Ramen', descriptor: 'Creamy pork bone broth, chashu, ajitsuke tamago, green onion.' },
-  { image: '/images/homepagehero.png', japaneseName: '鶏醤油たまごラーメン', englishName: 'Tori Shoyu Tamago Ramen', descriptor: 'Chicken-based soy broth ramen with egg and negi.' },
+  { image: '/images/AburaKaraRamenDeluxe.png', japaneseName: '油辛ラーメン', englishName: 'Abura Kara Ramen Deluxe', descriptor: 'Spicy oil broth, fried garlic bits, sesame, negi, ajitama.', calories: 1160, price: 15 },
+  { image: '/images/EbiWantanShioSoup.png', japaneseName: '海老ワンタン塩スープ', englishName: 'Ebi Wantan Shio Soup', descriptor: 'Light salted broth with shrimp wontons and green onion.', calories: 840, price: 14 },
+  { image: '/images/GyuNabeKaraStew.png', japaneseName: '牛鍋辛煮込み', englishName: 'Gyu Nabe Kara Stew', descriptor: 'Spicy beef hot pot with tofu, scallions, mushrooms, quail eggs.', calories: 1240, price: 17 },
+  { image: '/images/GyuNikomiRamen.png', japaneseName: '牛煮込みラーメン', englishName: 'Gyu Nikomi Ramen', descriptor: 'Slow-braised beef over ramen noodles with triple onsen eggs.', calories: 1380, price: 18 },
+  { image: '/images/KaraMisoTamagoRamen.png', japaneseName: '辛味噌たまごラーメン', englishName: 'Kara Miso Tamago Ramen', descriptor: 'Spicy miso broth, curly noodles, soft-boiled egg, chopped negi, sesame oil.', calories: 1220, price: 15 },
+  { image: '/images/KaraShoyuTamagoRamen.png', japaneseName: '辛醤油ラーメン', englishName: 'Kara Shoyu Tamago Ramen', descriptor: 'Spicy soy-based broth, sesame, scallions, onsen-style egg.', calories: 1100, price: 14 },
+  { image: '/images/MazemenGyuSoboro.png', japaneseName: '混ぜ麺 牛そぼろ', englishName: 'Mazemen Gyu Soboro', descriptor: 'Brothless spicy noodles with seasoned beef, scallions, sesame.', calories: 1160, price: 15 },
+  { image: '/images/MisoNabeUdon.png', japaneseName: '味噌鍋うどん', englishName: 'Miso Nabe Udon', descriptor: 'Miso-based hot pot with pork, shiitake, negi, double onsen tamago.', calories: 1300, price: 17 },
+  { image: '/images/TonkotsuTamagoRamen.png', japaneseName: '豚骨たまごラーメン', englishName: 'Tonkotsu Tamago Ramen', descriptor: 'Creamy pork bone broth, chashu, ajitsuke tamago, green onion.', calories: 1280, price: 16 },
+  { image: '/images/homepagehero.png', japaneseName: '鶏醤油たまごラーメン', englishName: 'Tori Shoyu Tamago Ramen', descriptor: 'Chicken-based soy broth ramen with egg and negi.', calories: 960, price: 14 },
 ]
 
 export default function Home() {
@@ -30,6 +30,7 @@ export default function Home() {
     <main className="home">
       <section className="home-hero-section">
         <div className="home-scene">
+        <span className="home-hero-watermark" aria-hidden>IRONBOWL</span>
         <div className="home-brushstroke">
           <img src="/images/Orangebrushstroke.png" alt="" aria-hidden />
         </div>
@@ -75,7 +76,10 @@ export default function Home() {
       </section>
       <section id="home-menu" className="home-orange-section">
         <div className="menu-section-inner">
-          <h2 className="menu-section-title">MENU</h2>
+          <div className="menu-section-header">
+            <h2 className="menu-section-title">MENU</h2>
+            <span className="menu-section-japanese">メニュー</span>
+          </div>
           <div className="menu-grid">
           {MENU_ITEMS.map((item, index) => (
             <MenuCard
@@ -84,6 +88,8 @@ export default function Home() {
               japaneseName={item.japaneseName}
               englishName={item.englishName}
               descriptor={item.descriptor}
+              calories={item.calories}
+              price={item.price}
             />
           ))}
           </div>
@@ -91,7 +97,10 @@ export default function Home() {
       </section>
       <section id="home-about" className="home-about-section">
         <div className="about-hero">
-          <h2 className="about-hero-title">OUR STORY</h2>
+          <div className="about-hero-header">
+            <h2 className="about-hero-title">OUR STORY</h2>
+            <span className="about-hero-japanese">ストーリー</span>
+          </div>
           <p className="about-hero-tagline">
             Two friends. One obsession with good ramen. Zero regrets.
           </p>
