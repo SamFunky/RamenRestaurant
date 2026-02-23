@@ -6,6 +6,7 @@ export default function Header() {
   const location = useLocation()
   const [visible, setVisible] = useState(true)
   const lastScrollY = useRef(0)
+  const currentHash = location.hash
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,10 +24,10 @@ export default function Header() {
   }, [])
 
   const navLinks = [
-    { path: '/', label: 'HOME' },
-    { path: '/menu', label: 'MENU' },
-    { path: '/contact', label: 'CONTACT' },
-    { path: '/about', label: 'ABOUT US' },
+    { path: '/', label: 'HOME', hash: '' },
+    { path: '/#home-menu', label: 'MENU', hash: '#home-menu' },
+    { path: '/#home-contact', label: 'CONTACT', hash: '#home-contact' },
+    { path: '/#home-about', label: 'ABOUT US', hash: '#home-about' },
   ]
 
   return (
@@ -35,11 +36,11 @@ export default function Header() {
         <span className="header-logo-text">鉄丼</span>
       </Link>
       <nav className="header-nav">
-        {navLinks.map(({ path, label }) => (
+        {navLinks.map(({ path, label, hash }) => (
           <Link
-            key={path}
+            key={hash || 'home'}
             to={path}
-            className={`header-link ${location.pathname === path ? 'active' : ''}`}
+            className={`header-link ${(hash === '' && !currentHash) || currentHash === hash ? 'active' : ''}`}
           >
             {label}
           </Link>

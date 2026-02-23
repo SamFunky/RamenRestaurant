@@ -56,7 +56,7 @@ export default function Home() {
           </svg>
         </div>
         <div className="home-word-block">
-          <p className="home-word-japanese">コク — こく</p>
+          <p className="home-word-japanese">コク - こく</p>
           <p className="home-word-pronunciation">koku (koh-koo)</p>
           <p className="home-word-definition">is the deep, lingering richness that gives broth its soul and complexity.</p>
         </div>
@@ -86,6 +86,65 @@ export default function Home() {
               descriptor={item.descriptor}
             />
           ))}
+          </div>
+        </div>
+      </section>
+      <section id="home-about" className="home-about-section">
+        <div className="about-hero">
+          <h2 className="about-hero-title">OUR STORY</h2>
+          <p className="about-hero-tagline">
+            Two friends. One obsession with good ramen. Zero regrets.
+          </p>
+          <p className="about-hero-intro">
+            Iron Bowl Ramen was founded in 2024, but it started long before that, in a cramped apartment kitchen: late nights, failed broths, and a dream that wouldn’t quit. Here’s how a software engineer and a kid from Osaka made it real.
+          </p>
+        </div>
+        <div className="about-founder about-founder-kenji">
+          <div className="about-founder-image-wrap">
+            <img
+              src="/images/IronBowlCo-founder1.jpg?v=2"
+              alt="Kenji Tanaka, co-founder"
+              className="about-founder-image"
+            />
+          </div>
+          <div className="about-founder-content">
+            <span className="about-founder-label">CO-FOUNDER</span>
+            <h3 className="about-founder-name">Kenji Tanaka</h3>
+            <p className="about-founder-story">
+              Kenji was still in diapers when his family left Osaka for the States. He doesn’t remember the move, but he remembers his obāchan’s kitchen. The smell of simmering tonkotsu. The weight of a real ceramic bowl. The way his grandfather would taste the broth and nod, just once, when it was right.
+            </p>
+            <p className="about-founder-story">
+              He grew up in a household where ramen wasn’t a trend; it was Tuesday. When he and Marcus started experimenting with recipes, Kenji wasn’t chasing nostalgia. He was chasing that same feeling his grandmother gave people: comfort, craft, and something that felt like home.
+            </p>
+          </div>
+        </div>
+        <div className="about-founder about-founder-marcus">
+          <div className="about-founder-image-wrap">
+            <img
+              src="/images/IronBowlCo-founder2.jpg?v=2"
+              alt="Marcus Reed, co-founder"
+              className="about-founder-image"
+            />
+          </div>
+          <div className="about-founder-content">
+            <span className="about-founder-label">CO-FOUNDER</span>
+            <h3 className="about-founder-name">Marcus Reed</h3>
+            <p className="about-founder-story">
+              Marcus spent a decade writing code by day and cooking by night. Ramen was his escape, the one thing that made him put the laptop away and focus on something real. He’d tweak recipes for hours. Take notes. Fail. Try again.
+            </p>
+            <p className="about-founder-story">
+              Starting a restaurant felt impossible. Too risky. Too far from the safe path. Then Kenji said, “What are we waiting for?” They found a space. They took the leap. And somewhere between the first bowl and the hundredth, it finally made sense. Some things are worth being scared of.
+            </p>
+          </div>
+        </div>
+        <div className="about-cta">
+          <div className="about-cta-inner">
+            <p className="about-cta-text">
+              Every bowl we serve is a product of that partnership: traditional technique meets obsessive iteration. We’re not trying to reinvent ramen. We’re trying to get it right.
+            </p>
+            <p className="about-cta-close">
+              Come taste what happens when two people stop talking about it and start doing it.
+            </p>
           </div>
         </div>
       </section>
