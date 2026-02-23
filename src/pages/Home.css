@@ -519,8 +519,25 @@
   transition: background-color 0.2s;
 }
 
-.contact-submit:hover {
+.contact-submit:hover:not(:disabled) {
   background-color: #d35400;
+}
+
+.contact-submit:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.contact-success {
+  color: #27ae60;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.contact-error {
+  color: #c0392b;
+  font-size: 0.95rem;
+  margin: 0;
 }
 
 /* Contact info & hours - right column */

@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { db } from '../lib/firebase'
 import './Home.css'
 import MenuCard from '../components/MenuCard'
 
@@ -20,6 +22,7 @@ export default function Home() {
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const menuRef = useRef<HTMLElement>(null)
   const aboutRef = useRef<HTMLElement>(null)
   const contactRef = useRef<HTMLElement>(null)
@@ -41,9 +44,25 @@ export default function Home() {
     return () => observer.disconnect()
   }, [])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: wire up to backend or email service
+    setSubmitStatus('loading')
+    try {
+      await addDoc(collection(db, 'messages'), {
+        name,
+        phone,
+        email,
+        message,
+        createdAt: serverTimestamp(),
+      })
+      setSubmitStatus('success')
+      setName('')
+      setPhone('')
+      setEmail('')
+      setMessage('')
+    } catch {
+      setSubmitStatus('error')
+    }
   }
 
   return (
@@ -230,8 +249,14 @@ export default function Home() {
                 onChange={(e) => setMessage(e.target.value)}
               />
             </div>
-            <button type="submit" className="contact-submit">
-              SEND MESSAGE
+            {submitStatus === 'success' && (
+              <p className="contact-success">Thanks for reaching out! We&apos;ll get back to you soon.</p>
+            )}
+            {submitStatus === 'error' && (
+              <p className="contact-error">Something went wrong. Please try again or contact us by phone or email.</p>
+            )}
+            <button type="submit" className="contact-submit" disabled={submitStatus === 'loading'}>
+              {submitStatus === 'loading' ? 'SENDING...' : 'SEND MESSAGE'}
             </button>
           </form>
           </div>
