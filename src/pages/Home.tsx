@@ -67,7 +67,7 @@ export default function Home() {
 
   return (
     <main className="home">
-      <section className="home-hero-section">
+      <section id="home" className="home-hero-section">
         <div className="home-scene">
         <span className="home-hero-watermark" aria-hidden>IRONBOWL</span>
         <div className="home-brushstroke">

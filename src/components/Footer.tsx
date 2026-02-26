@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 import './Footer.css'
 
 const scrollToSection = (hash: string) => {
-  if (!hash) {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+  if (hash === '#home' || !hash) {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   } else {
     const id = hash.replace('#', '')
     const el = document.getElementById(id)
@@ -19,12 +19,12 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-inner">
-        <Link to="/" className="footer-logo" onClick={(e) => { e.preventDefault(); scrollToSection('') }}>
+        <Link to="/" className="footer-logo" onClick={(e) => { e.preventDefault(); scrollToSection('#home') }}>
           <span className="footer-logo-text">鉄丼</span>
           <span className="footer-logo-label">Iron Bowl Ramen</span>
         </Link>
         <nav className="footer-nav">
-          <button type="button" className="footer-link footer-link-button" onClick={() => scrollToSection('')}>
+          <button type="button" className="footer-link footer-link-button" onClick={() => scrollToSection('#home')}>
             Home
           </button>
           <button type="button" className="footer-link footer-link-button" onClick={() => scrollToSection('#home-menu')}>
