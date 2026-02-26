@@ -25,6 +25,15 @@ const MENU_ITEMS = [
   { image: '/images/TonkotsuTamagoRamen.png', japaneseName: '豚骨たまごラーメン', englishName: 'Tonkotsu Tamago Ramen', descriptor: 'Creamy pork bone broth, chashu, ajitsuke tamago, green onion.', calories: 1280, price: 16 },
 ]
 
+const REVIEWS = [
+  { quote: 'Best ramen in the city. The Tori Shoyu is unreal — rich, balanced, and that egg is perfect every time.', author: 'Jake M.', stars: 5 },
+  { quote: "Finally, a spot that gets it. Broth that tastes like it simmered for days. I'll be back weekly.", author: 'Sarah K.', stars: 5 },
+  { quote: "Iron Bowl ruined other ramen for me. Nothing else compares. The Gyu Nikomi? *chef's kiss*", author: 'Mike T.', stars: 5 },
+  { quote: 'Cozy vibe, incredible food. The staff actually cares. This is what ramen should be.', author: 'Emma L.', stars: 5 },
+  { quote: 'Drove 45 minutes to try this. Worth every mile. That tonkotsu broth is next level.', author: 'David R.', stars: 5 },
+  { quote: 'My new go-to. Simple, honest, delicious. No gimmicks — just really good ramen.', author: 'Nina P.', stars: 5 },
+]
+
 export default function Home() {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
@@ -213,14 +222,23 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <div className="about-cta">
-          <div className="about-cta-inner">
-            <p className="about-cta-text">
-              Every bowl we serve is a product of that partnership: traditional technique meets obsessive iteration. We’re not trying to reinvent ramen. We’re trying to get it right.
-            </p>
-            <p className="about-cta-close">
-              Come taste what happens when two people stop talking about it and start doing it.
-            </p>
+        <div className="reviews-section">
+          <h2 className="reviews-section-title">WHAT PEOPLE SAY</h2>
+          <span className="reviews-section-japanese">お客様の声</span>
+          <div className="reviews-carousel">
+            <div className="reviews-track">
+              {[...REVIEWS, ...REVIEWS].map((review, i) => (
+                <article key={i} className="review-card">
+                  <p className="review-quote">&quot;{review.quote}&quot;</p>
+                  <div className="review-stars" aria-hidden>
+                    {[...Array(review.stars)].map((_, j) => (
+                      <span key={j} className="review-star">★</span>
+                    ))}
+                  </div>
+                  <p className="review-author">— {review.author}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
