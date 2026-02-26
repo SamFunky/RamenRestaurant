@@ -39,7 +39,7 @@
 }
 
 .menu-section-title {
-  color: #2f2f2f;
+  color: #fffbf6;
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   margin: 0;
@@ -51,30 +51,158 @@
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: clamp(1.1rem, 2.5vw, 1.4rem);
   font-weight: 600;
-  color: #2f2f2f;
+  color: #fffbf6;
   margin-top: -0.8rem;
   opacity: 0.9;
 }
 
+/* Specialty item. large feature at top of menu */
+.menu-specialty {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 4.5rem);
+  width: 100%;
+  max-width: min(90%, 1000px);
+  margin: -2rem auto -2rem;
+  padding: clamp(2rem, 4vw, 3rem) 0;
+  box-sizing: border-box;
+}
+
+.menu-specialty-image-wrap {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-specialty-watermark {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  font-family: 'Rampart One', sans-serif;
+  font-size: clamp(7rem, 24vw, 16rem);
+  color: rgba(47, 47, 47, 0.1);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.menu-specialty-image {
+  position: relative;
+  z-index: 1;
+  width: clamp(200px, 32vw, 340px);
+  height: clamp(200px, 32vw, 340px);
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.menu-specialty-content {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+
+.menu-specialty-japanese {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-style: italic;
+  color: #fffbf6;
+  margin: 0;
+  font-weight: 600;
+}
+
+.menu-specialty-english {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: #fffbf6;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.menu-specialty-descriptor {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.45;
+  color: #fffbf6;
+  margin: 0;
+  opacity: 0.92;
+  max-width: 42ch;
+}
+
+.menu-specialty-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  color: #fffbf6;
+  font-weight: 600;
+}
+
+.menu-specialty-calories {
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  opacity: 0.9;
+}
+
+.menu-specialty-sep {
+  opacity: 0.6;
+  font-weight: 400;
+}
+
+.menu-specialty-price {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+@media (max-width: 640px) {
+  .menu-specialty {
+    flex-direction: column;
+    text-align: center;
+  }
+  .menu-specialty-descriptor {
+    max-width: none;
+  }
+}
+
 .menu-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 6rem;
-  row-gap: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
   width: 100%;
   max-width: 100%;
+  padding-top: 2rem;
+  border-top: 3px solid rgba(255, 251, 246, 0.35);
 }
 
-@media (min-width: 2560px) {
-  .menu-grid {
-    column-gap: 10rem;
-  }
+/* Odd items right side, image right of words */
+.menu-grid .menu-card:nth-child(odd) {
+  flex-direction: row-reverse;
+  margin-left: auto;
+  margin-right: 0;
 }
 
-@media (min-width: 3840px) {
-  .menu-grid {
-    column-gap: 14rem;
-  }
+.menu-grid .menu-card:nth-child(odd) .menu-card-content {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.menu-grid .menu-card:nth-child(odd) .menu-card-title-row {
+  justify-content: flex-end;
+}
+
+.menu-grid .menu-card:nth-child(odd) .menu-card-descriptor {
+  text-align: right;
+}
+
+/* Even items left side, image left of words */
+.menu-grid .menu-card:nth-child(even) {
+  flex-direction: row;
+  margin-left: 0;
+  margin-right: auto;
 }
 
 .menu-card {
@@ -83,21 +211,83 @@
   flex-direction: row;
   align-items: center;
   gap: 1.5rem;
-  padding: 1.25rem;
+  padding: 0.5rem 1.25rem;
+  margin-bottom: -.75rem;
   box-sizing: border-box;
+  max-width: 85%;
 }
 
-.menu-card-brushstroke {
+.menu-card-watermark {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-45%, -40%) scale(3.6, 3);
+  transform: translateY(-50%);
   z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
+  font-family: 'Rampart One', sans-serif;
+  font-size: clamp(2.5rem, 10vw, 5rem);
+  color: rgba(47, 47, 47, 0.1);
   pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Left items: left-align watermark */
+.menu-grid .menu-card:nth-child(even) .menu-card-watermark {
+  left: 0;
+  right: auto;
+}
+
+/* Right items: right-align watermark */
+.menu-grid .menu-card:nth-child(odd) .menu-card-watermark {
+  left: auto;
+  right: 0;
+}
+
+.menu-card-number {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: clamp(3rem, 12vw, 6rem);
+  font-weight: 700;
+  color: #fffbf6;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.menu-card-number--left {
+  left: -6rem;
+  right: auto;
+  color: rgba(255, 251, 246, 0.9);
+}
+
+.menu-card-number--left::before {
+  content: '';
+  position: absolute;
+  right: 100%;
+  top: 55%;
+  transform: translateY(-50%);
+  margin-right: 0.75rem;
+  width: 2px;
+  height: 1em;
+  background: rgba(255, 251, 246, 0.1);
+}
+
+.menu-card-number--right {
+  left: auto;
+  right: -6rem;
+  color: rgba(255, 251, 246, 0.9);
+}
+
+.menu-card-number--right::after {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 55%;
+  transform: translateY(-50%);
+  margin-left: 0.75rem;
+  width: 2px;
+  height: 1em;
+  background: rgba(255, 251, 246, 0.1);
 }
 
 .menu-card-image {
@@ -418,14 +608,31 @@
 
 /* Contact section - white window below menu */
 .home-contact-section {
+  position: relative;
   background-color: #fffbf6;
   padding: 4rem 2rem 6rem;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  overflow: hidden;
+}
+
+.contact-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  font-family: 'Rampart One', sans-serif;
+  font-size: clamp(10rem, 28vw, 24rem);
+  color: rgba(47, 47, 47, 0.06);
+  pointer-events: none;
+  white-space: nowrap;
 }
 
 .contact-layout {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;

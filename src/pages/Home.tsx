@@ -4,6 +4,15 @@ import { db } from '../lib/firebase'
 import './Home.css'
 import MenuCard from '../components/MenuCard'
 
+const SPECIALTY_ITEM = {
+  image: '/images/homepagehero.png',
+  japaneseName: '鶏醤油たまごラーメン',
+  englishName: 'Tori Shoyu Tamago Ramen',
+  descriptor: 'Chicken-based soy broth ramen with egg and negi.',
+  calories: 960,
+  price: 14,
+}
+
 const MENU_ITEMS = [
   { image: '/images/AburaKaraRamenDeluxe.png', japaneseName: '油辛ラーメン', englishName: 'Abura Kara Ramen Deluxe', descriptor: 'Spicy oil broth, fried garlic bits, sesame, negi, ajitama.', calories: 1160, price: 15 },
   { image: '/images/EbiWantanShioSoup.png', japaneseName: '海老ワンタン塩スープ', englishName: 'Ebi Wantan Shio Soup', descriptor: 'Light salted broth with shrimp wontons and green onion.', calories: 840, price: 14 },
@@ -14,7 +23,6 @@ const MENU_ITEMS = [
   { image: '/images/MazemenGyuSoboro.png', japaneseName: '混ぜ麺 牛そぼろ', englishName: 'Mazemen Gyu Soboro', descriptor: 'Brothless spicy noodles with seasoned beef, scallions, sesame.', calories: 1160, price: 15 },
   { image: '/images/MisoNabeUdon.png', japaneseName: '味噌鍋うどん', englishName: 'Miso Nabe Udon', descriptor: 'Miso-based hot pot with pork, shiitake, negi, double onsen tamago.', calories: 1300, price: 17 },
   { image: '/images/TonkotsuTamagoRamen.png', japaneseName: '豚骨たまごラーメン', englishName: 'Tonkotsu Tamago Ramen', descriptor: 'Creamy pork bone broth, chashu, ajitsuke tamago, green onion.', calories: 1280, price: 16 },
-  { image: '/images/homepagehero.png', japaneseName: '鶏醤油たまごラーメン', englishName: 'Tori Shoyu Tamago Ramen', descriptor: 'Chicken-based soy broth ramen with egg and negi.', calories: 960, price: 14 },
 ]
 
 export default function Home() {
@@ -121,6 +129,22 @@ export default function Home() {
             <h2 className="menu-section-title">MENU</h2>
             <span className="menu-section-japanese">メニュー</span>
           </div>
+          <article className="menu-specialty">
+            <span className="menu-specialty-watermark" aria-hidden>SPECIALTY</span>
+            <div className="menu-specialty-image-wrap">
+              <img src={SPECIALTY_ITEM.image} alt="" className="menu-specialty-image" />
+            </div>
+            <div className="menu-specialty-content">
+              <p className="menu-specialty-japanese">{SPECIALTY_ITEM.japaneseName}</p>
+              <h3 className="menu-specialty-english">{SPECIALTY_ITEM.englishName}</h3>
+              <p className="menu-specialty-descriptor">{SPECIALTY_ITEM.descriptor}</p>
+              <div className="menu-specialty-meta">
+                <span className="menu-specialty-calories">{SPECIALTY_ITEM.calories} cal</span>
+                <span className="menu-specialty-sep" aria-hidden>·</span>
+                <span className="menu-specialty-price">${SPECIALTY_ITEM.price}</span>
+              </div>
+            </div>
+          </article>
           <div className="menu-grid">
           {MENU_ITEMS.map((item, index) => (
             <MenuCard
@@ -131,6 +155,8 @@ export default function Home() {
               descriptor={item.descriptor}
               calories={item.calories}
               price={item.price}
+              rightAlign={index % 2 === 0}
+              itemNumber={index + 1}
             />
           ))}
           </div>
@@ -199,6 +225,7 @@ export default function Home() {
         </div>
       </section>
       <section ref={contactRef} id="home-contact" className="home-contact-section section-fade">
+        <span className="contact-watermark" aria-hidden>CONTACT</span>
         <div className="contact-layout">
           <div className="contact-window">
             <h2 className="contact-window-title">GET IN TOUCH</h2>
