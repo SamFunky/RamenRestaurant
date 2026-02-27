@@ -5,7 +5,8 @@ const scrollToSection = (hash: string) => {
   const id = hash === '#home' || !hash ? 'home' : hash.replace('#', '')
   const el = document.getElementById(id)
   if (el) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const block = hash === '#home-contact' ? 'center' : 'start'
+    el.scrollIntoView({ behavior: 'smooth', block })
   } else if (hash === '#home' || !hash) {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }

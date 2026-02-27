@@ -40,9 +40,10 @@ export default function Home() {
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const menuRef = useRef<HTMLElement>(null)
-  const aboutRef = useRef<HTMLElement>(null)
-  const contactRef = useRef<HTMLElement>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
+  const aboutRef = useRef<HTMLDivElement>(null)
+  const reviewsRef = useRef<HTMLDivElement>(null)
+  const contactRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -55,7 +56,7 @@ export default function Home() {
       },
       { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     )
-    ;[menuRef.current, aboutRef.current, contactRef.current].forEach((el) => {
+    ;[menuRef.current, aboutRef.current, reviewsRef.current, contactRef.current].forEach((el) => {
       if (el) observer.observe(el)
     })
     return () => observer.disconnect()
@@ -132,8 +133,8 @@ export default function Home() {
         </button>
         </div>
       </section>
-      <section ref={menuRef} id="home-menu" className="home-orange-section section-fade">
-        <div className="menu-section-inner">
+      <section id="home-menu" className="home-orange-section">
+        <div ref={menuRef} className="menu-section-inner section-fade">
           <div className="menu-section-header">
             <h2 className="menu-section-title">MENU</h2>
             <span className="menu-section-japanese">メニュー</span>
@@ -171,7 +172,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section ref={aboutRef} id="home-about" className="home-about-section section-fade">
+      <section id="home-about" className="home-about-section">
+        <div ref={aboutRef} className="section-fade">
         <div className="about-hero">
           <div className="about-hero-header">
             <h2 className="about-hero-title">OUR STORY</h2>
@@ -222,7 +224,9 @@ export default function Home() {
             </p>
           </div>
         </div>
+        </div>
         <div className="reviews-section">
+          <div ref={reviewsRef} className="section-fade">
           <h2 className="reviews-section-title">WHAT PEOPLE SAY</h2>
           <span className="reviews-section-japanese">お客様の声</span>
           <div className="reviews-carousel">
@@ -240,9 +244,11 @@ export default function Home() {
               ))}
             </div>
           </div>
+          </div>
         </div>
       </section>
-      <section ref={contactRef} id="home-contact" className="home-contact-section section-fade">
+      <section id="home-contact" className="home-contact-section">
+        <div ref={contactRef} className="section-fade">
         <span className="contact-watermark" aria-hidden>CONTACT</span>
         <div className="contact-layout">
           <div className="contact-window">
@@ -352,6 +358,7 @@ export default function Home() {
               <div className="contact-hours-item"><span>SUNDAY</span><span>9:00 am – 5:00 pm</span></div>
             </div>
           </div>
+        </div>
         </div>
       </section>
     </main>
