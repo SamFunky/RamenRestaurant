@@ -44,6 +44,87 @@ export default function Home() {
   const aboutRef = useRef<HTMLDivElement>(null)
   const reviewsRef = useRef<HTMLDivElement>(null)
   const contactRef = useRef<HTMLDivElement>(null)
+  const reviewsTrackRef = useRef<HTMLDivElement>(null)
+  const touchStartX = useRef(0)
+  const dragStartTranslateX = useRef(0)
+  const isDragging = useRef(false)
+  const lastTouchX = useRef(0)
+  const lastTouchTime = useRef(0)
+  const velocityX = useRef(0)
+  const momentumRAF = useRef<number | null>(null)
+
+  const resumeReviewsAnimation = (currentX: number, halfWidth: number) => {
+    const track = reviewsTrackRef.current
+    if (!track) return
+    let normalizedX = currentX % halfWidth
+    if (normalizedX > 0) normalizedX -= halfWidth
+    const duration = 45
+    const delay = (normalizedX / halfWidth) * duration
+    track.style.transform = ''
+    track.style.animation = `reviews-scroll ${duration}s linear ${delay}s infinite`
+  }
+
+  const handleReviewsTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    const track = reviewsTrackRef.current
+    if (!track) return
+    if (momentumRAF.current !== null) {
+      cancelAnimationFrame(momentumRAF.current)
+      momentumRAF.current = null
+    }
+    const matrix = new DOMMatrix(getComputedStyle(track).transform)
+    dragStartTranslateX.current = matrix.m41
+    touchStartX.current = e.touches[0].clientX
+    lastTouchX.current = e.touches[0].clientX
+    lastTouchTime.current = Date.now()
+    velocityX.current = 0
+    isDragging.current = true
+    track.style.animation = 'none'
+    track.style.transform = `translateX(${dragStartTranslateX.current}px)`
+  }
+
+  const handleReviewsTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    const track = reviewsTrackRef.current
+    if (!track || !isDragging.current) return
+    const now = Date.now()
+    const dt = now - lastTouchTime.current
+    if (dt > 0) {
+      velocityX.current = ((e.touches[0].clientX - lastTouchX.current) / dt) * 16
+    }
+    lastTouchX.current = e.touches[0].clientX
+    lastTouchTime.current = now
+    const delta = e.touches[0].clientX - touchStartX.current
+    track.style.transform = `translateX(${dragStartTranslateX.current + delta}px)`
+  }
+
+  const handleReviewsTouchEnd = () => {
+    const track = reviewsTrackRef.current
+    if (!track || !isDragging.current) return
+    isDragging.current = false
+    const matrix = new DOMMatrix(getComputedStyle(track).transform)
+    let currentX = matrix.m41
+    const halfWidth = track.scrollWidth / 2
+    const timeSinceLastMove = Date.now() - lastTouchTime.current
+    let velocity = timeSinceLastMove > 80 ? 0 : velocityX.current
+    if (Math.abs(velocity) < 0.5) {
+      resumeReviewsAnimation(currentX, halfWidth)
+      return
+    }
+    const friction = 0.95
+    const tick = () => {
+      velocity *= friction
+      currentX += velocity
+      if (currentX < -halfWidth) currentX += halfWidth
+      if (currentX > 0) currentX -= halfWidth
+      if (Math.abs(velocity) < 0.3) {
+        resumeReviewsAnimation(currentX, halfWidth)
+        momentumRAF.current = null
+        return
+      }
+      track.style.transform = `translateX(${currentX}px)`
+      momentumRAF.current = requestAnimationFrame(tick)
+    }
+    momentumRAF.current = requestAnimationFrame(tick)
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -54,10 +135,16 @@ export default function Home() {
           }
         })
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0.05, rootMargin: '0px' }
     )
     ;[menuRef.current, aboutRef.current, reviewsRef.current, contactRef.current].forEach((el) => {
-      if (el) observer.observe(el)
+      if (el) {
+        observer.observe(el)
+        const rect = el.getBoundingClientRect()
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          el.classList.add('section-visible')
+        }
+      }
     })
     return () => observer.disconnect()
   }, [])
@@ -145,6 +232,7 @@ export default function Home() {
               <img src={SPECIALTY_ITEM.image} alt="" className="menu-specialty-image" />
             </div>
             <div className="menu-specialty-content">
+              <span className="menu-specialty-badge" aria-label="Specialty item">✦ SPECIALTY ✦</span>
               <p className="menu-specialty-japanese">{SPECIALTY_ITEM.japaneseName}</p>
               <h3 className="menu-specialty-english">{SPECIALTY_ITEM.englishName}</h3>
               <p className="menu-specialty-descriptor">{SPECIALTY_ITEM.descriptor}</p>
@@ -230,7 +318,13 @@ export default function Home() {
           <h2 className="reviews-section-title">WHAT PEOPLE SAY</h2>
           <span className="reviews-section-japanese">お客様の声</span>
           <div className="reviews-carousel">
-            <div className="reviews-track">
+            <div
+              className="reviews-track"
+              ref={reviewsTrackRef}
+              onTouchStart={handleReviewsTouchStart}
+              onTouchMove={handleReviewsTouchMove}
+              onTouchEnd={handleReviewsTouchEnd}
+            >
               {[...REVIEWS, ...REVIEWS].map((review, i) => (
                 <article key={i} className="review-card">
                   <p className="review-quote">&quot;{review.quote}&quot;</p>

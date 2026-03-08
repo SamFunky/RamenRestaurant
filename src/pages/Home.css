@@ -110,6 +110,10 @@
 }
 
 
+.menu-specialty-badge {
+  display: none;
+}
+
 .menu-specialty-japanese {
   font-size: clamp(1.5rem, 3.5vw, 2.25rem);
   font-style: italic;
@@ -1061,4 +1065,198 @@
 .section-fade.section-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .reviews-track:hover {
+    animation-play-state: running;
+  }
+
+  .review-card {
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-hero-section {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    height: 55vh;
+    min-height: 55vh;
+    margin-bottom: -80px;
+  }
+
+  .home-scene {
+    aspect-ratio: unset;
+    height: 55vh;
+    width: 100%;
+  }
+
+  .home-hero {
+    width: 82%;
+  }
+
+  .home-hero-watermark {
+    font-size: 17vw;
+  }
+
+  .home-brushstroke {
+    width: 115%;
+  }
+
+  .home-arc-text {
+    top: calc(50% - 25vw);
+    width: 118%;
+  }
+
+  .home-chopsticks {
+    display: none;
+  }
+
+  .home-word-block,
+  .home-scroll-button {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-orange-section {
+    padding: 2rem 0.75rem 6rem 0.75rem;
+  }
+
+  .menu-section-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .menu-specialty {
+    max-width: 100%;
+    padding: 0 0 1.5rem 0;
+    margin: 0 auto;
+    gap: 0.5rem;
+  }
+
+  .menu-specialty-watermark {
+    display: none;
+  }
+
+  .menu-specialty-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .menu-specialty-badge {
+    display: inline-block;
+    order: -2;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: #2f2f2f;
+    background-color: rgba(255, 251, 246, 0.9);
+    padding: 0.3em 0.9em;
+    border-radius: 999px;
+    text-transform: uppercase;
+  }
+
+  .menu-specialty-meta {
+    order: -1;
+    justify-content: center;
+  }
+
+  .menu-specialty-japanese {
+    display: none;
+  }
+
+  .menu-specialty-english {
+    order: 1;
+  }
+
+  .menu-specialty-descriptor {
+    order: 2;
+  }
+
+  .menu-grid .menu-card:nth-child(odd),
+  .menu-grid .menu-card:nth-child(even) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .menu-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+    padding: 1.25rem 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .menu-card-number {
+    display: none;
+  }
+
+  .menu-card-watermark {
+    display: none;
+  }
+
+  .menu-card-image {
+    width: clamp(130px, 42vw, 180px);
+    height: clamp(130px, 42vw, 180px);
+  }
+
+  .menu-card-content,
+  .menu-grid .menu-card:nth-child(odd) .menu-card-content,
+  .menu-grid .menu-card:nth-child(even) .menu-card-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .menu-card-title-row,
+  .menu-grid .menu-card:nth-child(odd) .menu-card-title-row,
+  .menu-grid .menu-card:nth-child(even) .menu-card-title-row {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+  }
+
+  .menu-card-descriptor,
+  .menu-grid .menu-card:nth-child(odd) .menu-card-descriptor,
+  .menu-grid .menu-card:nth-child(even) .menu-card-descriptor {
+    text-align: center;
+  }
+
+  .menu-card-meta {
+    gap: 0.75rem;
+    justify-content: center;
+  }
+
+  .menu-card-calories {
+    order: 1;
+  }
+
+  .menu-card-price {
+    order: 2;
+  }
+
+  .menu-card-meta {
+    order: 1;
+  }
+
+  .menu-card-english {
+    order: 2;
+  }
+
+  .menu-grid .menu-card {
+    border-bottom: 1px solid rgba(255, 251, 246, 0.2);
+    margin-bottom: 0;
+  }
+
+  .menu-grid .menu-card:last-child {
+    border-bottom: none;
+  }
 }

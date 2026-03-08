@@ -12,13 +12,13 @@ interface MenuCardProps {
 export default function MenuCard({ image, japaneseName, englishName, descriptor, calories, price, rightAlign, itemNumber }: MenuCardProps) {
   const metaContent = rightAlign ? (
     <>
-      <span className="menu-card-price">{price}</span>
+      <span className="menu-card-price">${price}</span>
       <span className="menu-card-calories">{calories}</span>
     </>
   ) : (
     <>
       <span className="menu-card-calories">{calories}</span>
-      <span className="menu-card-price">{price}</span>
+      <span className="menu-card-price">${price}</span>
     </>
   )
 
